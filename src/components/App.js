@@ -1,24 +1,24 @@
-import React from "react";
-import CommentBox from "./CommentBox";
-import CommentList from "./CommentList";
+import React from 'react'
+import CommentBox from 'components/CommentBox'
+import CommentList from 'components/CommentList'
 
 class App extends React.PureComponent {
   state = {
-    comments: []
-  };
+    comments: [],
+  }
 
   handleSubmit = comment => {
     this.setState(state => ({
-      comments: [...state.comments, comment]
-    }));
-  };
+      comments: [...state.comments, comment],
+    }))
+  }
 
   handleShowProfile = id => {
-    this.setState({ currentComment: this.state.comments[id] });
-  };
+    this.setState({ currentComment: this.state.comments[id] })
+  }
 
   render() {
-    const { comments } = this.state;
+    const { comments } = this.state
     return (
       <>
         <CommentBox handleSubmit={this.handleSubmit} />
@@ -27,8 +27,8 @@ class App extends React.PureComponent {
           handleShowProfile={this.handleShowProfile}
         />
       </>
-    );
+    )
   }
 }
 
-export default App;
+export default App

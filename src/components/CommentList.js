@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 export default props => (
   <ul>
@@ -6,4 +6,4 @@ export default props => (
       <li key={k}>{v}</li>
     ))}
   </ul>
-);
+)

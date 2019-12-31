@@ -1,16 +1,16 @@
-import React from "react";
+import React from 'react'
 
 class CommentBox extends React.PureComponent {
-  state = { comment: "" };
+  state = { comment: '' }
 
   handleTextChange = e => {
-    this.setState({ comment: e.target.value });
-  };
+    this.setState({ comment: e.target.value })
+  }
 
   handleSubmit = () => {
-    this.props.handleSubmit(this.state.comment);
-    this.setState({ comment: "" });
-  };
+    this.props.handleSubmit(this.state.comment)
+    this.setState({ comment: '' })
+  }
 
   render() {
     return (
@@ -22,8 +22,8 @@ class CommentBox extends React.PureComponent {
         />
         <button onClick={this.handleSubmit}>Add comment</button>
       </>
-    );
+    )
   }
 }
 
-export default CommentBox;
+export default CommentBox
