@@ -1,6 +1,7 @@
 import React from 'react'
 import CommentBox from 'components/CommentBox'
 import CommentList from 'components/CommentList'
+import Title from 'components/Title'
 
 class App extends React.PureComponent {
   state = {
@@ -21,6 +22,7 @@ class App extends React.PureComponent {
     const { comments } = this.state
     return (
       <>
+        <Title title="My App" items={[1, 2, 3]} />
         <CommentBox handleSubmit={this.handleSubmit} />
         <CommentList
           comments={comments}
