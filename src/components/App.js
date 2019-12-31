@@ -1,5 +1,6 @@
 import React from "react";
 import CommentBox from "./CommentBox";
+import CommentList from "./CommentList";
 
 class App extends React.Component {
   state = {
@@ -26,11 +27,7 @@ class App extends React.Component {
           handleTextChange={this.handleTextChange}
           handleSubmit={this.handleSubmit}
         />
-        <ul>
-          {this.state.comments.map(v => (
-            <li>{v}</li>
-          ))}
-        </ul>
+        <CommentList comments={this.state.comments} />
       </>
     );
   }
