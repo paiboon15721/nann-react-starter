@@ -1,35 +1,51 @@
 import React from "react";
 import CommentBox from "./CommentBox";
 import CommentList from "./CommentList";
+import Profile from "./Profile";
 
+const user = {
+  name: "paiboon",
+  age: "30"
+};
 class App extends React.Component {
   state = {
-    comment: "",
-    comments: []
+    comments: [],
+    currentComment: null
   };
 
-  handleTextChange = e => {
-    this.setState({ comment: e.target.value });
-  };
-
-  handleSubmit = () => {
+  handleSubmit = comment => {
     this.setState(state => ({
-      comments: [...state.comments, state.comment]
+      comments: [...state.comments, { ...user, text: comment }]
     }));
-    this.setState({ comment: "" });
   };
 
-  render() {
+  handleShowProfile = id => {
+    this.setState({ currentComment: this.state.comments[id] });
+  };
+
+  renderPage() {
+    if (this.state.currentComment) {
+      return (
+        <Profile
+          name={this.state.currentComment.name}
+          age={this.state.currentComment.age}
+          handleBack={() => this.setState({ currentComment: null })}
+        />
+      );
+    }
     return (
       <>
-        <CommentBox
-          comment={this.state.comment}
-          handleTextChange={this.handleTextChange}
-          handleSubmit={this.handleSubmit}
+        <CommentBox handleSubmit={this.handleSubmit} user={this.state.user} />
+        <CommentList
+          comments={this.state.comments}
+          handleShowProfile={this.handleShowProfile}
         />
-        <CommentList comments={this.state.comments} />
       </>
     );
+  }
+
+  render() {
+    return this.renderPage();
   }
 }
 

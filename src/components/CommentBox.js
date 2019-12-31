@@ -1,12 +1,29 @@
 import React from "react";
 
-export default props => (
-  <>
-    <textarea
-      value={props.comment}
-      onChange={props.handleTextChange}
-      rows="3"
-    />
-    <button onClick={props.handleSubmit}>Add comment</button>
-  </>
-);
+class CommentBox extends React.Component {
+  state = { comment: "" };
+
+  handleTextChange = e => {
+    this.setState({ comment: e.target.value });
+  };
+
+  handleSubmit = () => {
+    this.props.handleSubmit(this.state.comment);
+    this.setState({ comment: "" });
+  };
+
+  render() {
+    return (
+      <>
+        <textarea
+          value={this.state.comment}
+          onChange={this.handleTextChange}
+          rows="3"
+        />
+        <button onClick={this.handleSubmit}>Add comment</button>
+      </>
+    );
+  }
+}
+
+export default CommentBox;
