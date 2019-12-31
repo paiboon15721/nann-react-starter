@@ -10,7 +10,7 @@ const user = {
 class App extends React.Component {
   state = {
     comments: [],
-    currentComment: null
+    currentComment: { name: null }
   };
 
   handleSubmit = comment => {
@@ -23,29 +23,23 @@ class App extends React.Component {
     this.setState({ currentComment: this.state.comments[id] });
   };
 
-  renderPage() {
-    if (this.state.currentComment) {
-      return (
-        <Profile
-          name={this.state.currentComment.name}
-          age={this.state.currentComment.age}
-          handleBack={() => this.setState({ currentComment: null })}
-        />
-      );
-    }
+  render() {
+    const { currentComment, comments } = this.state;
     return (
       <>
-        <CommentBox handleSubmit={this.handleSubmit} user={this.state.user} />
+        <CommentBox handleSubmit={this.handleSubmit} />
         <CommentList
-          comments={this.state.comments}
+          comments={comments}
           handleShowProfile={this.handleShowProfile}
         />
+        {currentComment && (
+          <Profile
+            comment={currentComment}
+            handleBack={() => this.setState({ currentComment: null })}
+          />
+        )}
       </>
     );
-  }
-
-  render() {
-    return this.renderPage();
   }
 }
 
