@@ -1,6 +1,6 @@
 import React from "react";
 
-class CommentBox extends React.Component {
+class CommentBox extends React.PureComponent {
   state = { comment: "" };
 
   handleTextChange = e => {
